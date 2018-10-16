@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[自定义GitHubPages的域名]]></title>
+    <url>%2Fp%2Fa916.html</url>
+    <content type="text"><![CDATA[今天在配置 githubpages 自定义域名的时候怎么也连不通，通过搜素发现需要在 git 项目根目录下setting，配置Custom domain为自己的自定义域名，这时 github 配置了一个临时的CNAME。 1hexo d 重新部署之后，github 又会将Custom domain置为空，所以找到最终结局方法，在 hexo 项目的source目录下添加 CNAME 的文件，文件内容为自定义的域名：如 blog.zoulux.top]]></content>
+      <tags>
+        <tag>部署</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[如何优雅的删除git子模块]]></title>
+    <url>%2Fp%2Fb63b.html</url>
+    <content type="text"><![CDATA[git submodule deinit $mod // 逆初始化 git rm –cached $mode // 删除子模块缓存信息 git commit -am “Remove a $mode.” // 提交更改]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2Fp%2F3eeb.html</url>
+    <content type="text"><![CDATA[Welcome欢迎来到我的博客，希望我能勤快点，每周一更！ 每学一门新语言的时候，我们总是希望能在控制台中快速输出Hello world，这次也不理外。 世界，你好，我来了！ 业精于勤荒于嬉，行成于思毁于随。共勉！]]></content>
+  </entry>
+</search>
