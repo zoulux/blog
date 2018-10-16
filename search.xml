@@ -20,5 +20,8 @@
     <title><![CDATA[Hello World]]></title>
     <url>%2Fp%2F3eeb.html</url>
     <content type="text"><![CDATA[Welcome欢迎来到我的博客，希望我能勤快点，每周一更！ 每学一门新语言的时候，我们总是希望能在控制台中快速输出Hello world，这次也不理外。 世界，你好，我来了！ 业精于勤荒于嬉，行成于思毁于随。共勉！]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
   </entry>
 </search>
