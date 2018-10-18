@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[定制博客]]></title>
+    <url>%2Fp%2F4e.html</url>
+    <content type="text"><![CDATA[虽然默认的 next 主题已经很美了，但是网上有一堆对 next 进行定制的教程，本着优雅不炫技的原则，我对我的博客，作了以下简单的定制： 添加 hexo-admin插件hexo-admin 为一套hexo 博客管理工具，我准备将博客的开发环境也部署到服务器上，这样就不用开本地环境，有了它就可以在线编辑博客了，非常方便。 安装依赖库 1$ npm install --save hexo-admin 启动本地博客，并在浏览器打开 12$ hexo s $ open http://localhost:4000/admin 如果不出错的话 admin 界面就已经展现在眼前，但是很多时候想配置账户密码去登录到这个管理后台，就需要接着配置 在 admin 的界面 ,前往Settings &gt;Setup authentification 可以看到Username,Password,Secret ，输入自己心仪的账户密码以及秘钥，拷贝 hexo-admin authentification 下的内容 在博客根目录下的 _config.yml 最底下粘贴如下配置 1234admin: username: admin password_hash: $2a$10$L.XAIqIWgTc5S1zpvV3MEu7/rH34p4Is/nq824smv8EZ3lIPCp1su secret: wobuhuigaosunide 重新执行第 2 步，发现这时候已经需要登录，输入配置中的账号和密码即可 添加 分类 和 标签每篇文章可以有一个分类和多个标签，这也是分类和标签的最大的区别。 创建 分类 选项 生成 分类 页并添加属性type 1$ hexo new page categories 找到上面提示的 index.md 文件路径 ，打开发现是这样 1234---title: categoriesdate: 2018-10-17 00:33:17--- 将其修改为 12345---title: 分类date: 2018-10-17 00:33:17type: "categories"--- 博客根目录下依次打开 source &gt;_post 找一篇博客打开，顶部有一些文章的配置信息，为 categories 字段添加属性 123456title: Hello Worldabbrlink: 3eebtags: []categories: 随笔date: 2018-10-15 16:27:00--- 一篇文章只有一个分类，如果需要二级分类的话可以如下修改参考hexo 分类和标签 12345678title: Hello Worldabbrlink: 3eebtags: []categories: - web开发- rubydate: 2018-10-15 16:27:00---]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[自定义GitHubPages的域名]]></title>
     <url>%2Fp%2Fa916.html</url>
     <content type="text"><![CDATA[今天在配置 githubpages 自定义域名的时候怎么也连不通，通过搜素发现需要在 git 项目根目录下setting，配置Custom domain为自己的自定义域名，这时 github 配置了一个临时的CNAME。 1hexo d 重新部署之后，github 又会将Custom domain置为空，所以找到最终结局方法，在 hexo 项目的source目录下添加 CNAME 的文件，文件内容为自定义的域名：如 blog.zoulux.top]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
       <tags>
         <tag>部署</tag>
       </tags>
@@ -12,8 +23,11 @@
     <title><![CDATA[如何优雅的删除git子模块]]></title>
     <url>%2Fp%2Fb63b.html</url>
     <content type="text"><![CDATA[git submodule deinit $mod // 逆初始化 git rm –cached $mode // 删除子模块缓存信息 git commit -am “Remove a $mode.” // 提交更改]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
       <tags>
-        <tag>git</tag>
+        <tag>-git</tag>
       </tags>
   </entry>
   <entry>
