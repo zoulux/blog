@@ -424,16 +424,16 @@
 
       
         
-          <p>虽然默认的 next 主题已经很美了，但是网上有一堆对 next 进行定制的教程，本着优雅不炫技的原则，我对我的博客，作了以下简单的定制：</p>
-<h3 id="添加-hexo-admin插件"><a href="#添加-hexo-admin插件" class="headerlink" title="添加 hexo-admin插件"></a>添加 hexo-admin插件</h3><p><a href="https://github.com/jaredly/hexo-admin" target="_blank" rel="noopener">hexo-admin</a> 为一套hexo 博客管理工具，我准备将博客的开发环境也部署到服务器上，这样就不用开本地环境，有了它就可以在线编辑博客了，非常方便。</p>
-<ol>
-<li><p>安装依赖库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save hexo-admin</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动本地博客，并在浏览器打开</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s </span><br><span class="line">$ open http://localhost:4000/admin</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+          
+          虽然默认的 next 主题已经很美了，但是网上有一堆对 next 进行定制的教程，本着优雅不炫技的原则，我对我的博客，作了以下简单的定制：
+添加 hexo-admin插件hexo-admin 为一套hexo 博客管理工具，我准备将博客的开发环境也部署到服务器上，这样就不用开本地环境，有了它就可以在线编辑博客了，非常方便。
+
+安装依赖库
+1$ npm install --save hexo-admin
+
+启动本地博客，并在浏览器打开
+12$ hexo s $ open http://localho
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/p/4e.html#more" rel="contents">
@@ -580,11 +580,18 @@
       
         
           
-            <p>今天在配置 githubpages 自定义域名的时候怎么也连不通，通过搜素发现需要在 git 项目根目录下<code>setting</code>，配置<code>Custom domain</code>为自己的自定义域名，这时 github 配置了一个临时的<em>CNAME</em>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>重新部署之后，github 又会将<code>Custom domain</code>置为空，所以找到最终结局方法，在 hexo 项目的<code>source</code>目录下添加 <code>CNAME</code> 的文件，文件内容为自定义的域名：如 <code>blog.zoulux.top</code></p>
+          今天在配置 githubpages 自定义域名的时候怎么也连不通，通过搜素发现需要在 git 项目根目录下setting，配置Custom domain为自己的自定义域名，这时 github 配置了一个临时的CNAME。
+1hexo d
+重新部署之后，github 又会将Custom domain置为空，所以找到最终结局方法，在 hexo 项目的source目录下添加 CNAME 的文件，文件内容为自定义的域名：如 blog.zoulux.top
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/p/a916.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -724,16 +731,23 @@
       
         
           
-            <ol>
-<li><p>git submodule deinit $mod // 逆初始化</p>
-</li>
-<li><p>git rm –cached $mode  // 删除子模块缓存信息</p>
-</li>
-<li><p>git commit -am “Remove a $mode.” // 提交更改</p>
-</li>
-</ol>
+          
+git submodule deinit $mod // 逆初始化
+
+git rm –cached $mode  // 删除子模块缓存信息
+
+git commit -am “Remove a $mode.” // 提交更改
+
+
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/p/b63b.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -873,14 +887,21 @@
       
         
           
-            <h1 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h1><p>欢迎来到我的博客，希望我能勤快点，每周一更！</p>
-<p>每学一门新语言的时候，我们总是希望能在控制台中快速输出<code>Hello world</code>，这次也不理外。</p>
-<p>世界，你好，我来了！</p>
-<blockquote>
-<p>业精于勤荒于嬉，行成于思毁于随。共勉！</p>
-</blockquote>
+          Welcome欢迎来到我的博客，希望我能勤快点，每周一更！
+每学一门新语言的时候，我们总是希望能在控制台中快速输出Hello world，这次也不理外。
+世界，你好，我来了！
+
+业精于勤荒于嬉，行成于思毁于随。共勉！
+
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/p/3eeb.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
