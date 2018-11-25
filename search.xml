@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Laravel中的队列执行过慢]]></title>
+    <url>%2Fp%2Fa1bc.html</url>
+    <content type="text"><![CDATA[本来不想水的，公司的白先生硬要我水一篇，那就简单记录一下。问题上周，系统出现了一个很要命的问题，后端用的 laravel 队列执行导表任务异常缓慢，以前几分钟就能出的报告，几个小时都没动静，因为业务需要，每次用户观看视频都需要计算一些非常耗时的任务。调研后来调查尝试也确实是这块出了问题，laravel 文档中介绍了队列的优先级，提到参数顺序的问题。1$ php artisan queue:work --queue=high,low--queue 为队列的名称，参数用 , 分割，排的越靠前优先级越高。所以将越耗时的任务的优先级设置越低，将位置设置越靠后就好了。小结所以如果系统中存在耗时任务，造成整个队列都被卡住，应该按预计的执行耗时排序，将越耗时的任务提到越靠后的位置，这样就可以解决执行时间较短的任务优先执行参考队列优先级]]></content>
+      <categories>
+        <category>laravel</category>
+      </categories>
+      <tags>
+        <tag>queue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[你真的会用postman吗]]></title>
     <url>%2Fp%2Fce3e.html</url>
     <content type="text"><![CDATA[postman 一个非常牛逼的 api 测试工具。如果仅仅是打个 api，还不如直接 curl 来的简单，所以这里提供一些高级的功能的参考。多级文件夹经常需要将 api 进行按功能模块进行分组，这种多级文件夹的形式正好可以满足我的需求，某个功能每个 api 一目了然。多种请求方法postman 有多达 15 种请求方法供选择，常用 GET、POST、PUT、DELET更是切换起来异常的方便。URL 参数拼接这里说的并不是简单的参数拼接 a=b&amp; 这种，而是比较高级的参数拼接1http://&#123;&#123;host&#125;&#125;/api/topics/:tid/replies/:rid然后在底下就可以补全 tid 和 rid 就可以了。Authorization授权可以通过常规的在请求 Headers 中添加 &quot;Authorization: balabala&quot;，但是 postman 更为方便的是有个专门的 Authorization 的 Tab，切换到这个 Tab 下面有多种通用的授权模式，譬如 Basic Auth 、Bearer Token 、OAuth 2.0 等，这里postman会自动添加相关信息到头或者 url 中。Manage Environment这个功能非常实用，相当于全局定义的常量。譬如线下环境的域名是 dev-api.zoulux.top ，线上环境的域名是 api.zoulux.top，那么这边新建两个 Environment ，分别配置 host 为上面域名，然后在所有的接口上就可以实用如下方式：1http://&#123;&#123;host&#125;&#125;/api/topics/:tid/replies/:rid很简单的就可以切换线上线下环境了，不仅可以配置 host ，很多公司线上线下接口的 secret 也不一样，都可以在不同的 Environment 中配置。Pre-request Script如果上面定义的是全局常量，那么这里可以说是可以定义局部变量，注意这里说的是「可以」，所以功能肯定远远不止如此，此处的 Script 是一个 JavaScript 脚本。变量譬如后端要求前端每次打接口将本地的 timestamp 拼接到接口里面接口里面12ts=new Date().getTime();pm.environment.set("timestamp", ts);pm 是 postman 提供的全局变量，可以用于设置局部变量，那么在 Params 的 Tab 下面就可以直接使用 timestamp 变量1timestamp : &#123;&#123;timestamp&#125;&#125;加密在对接百家云的时候，他们的接口是需要签名的，接口规则还蛮复杂，这里需要接口按 key 排序，还需要加密，这里是 js 的脚本，排序就用原生的 js 就能完成，但是还需要对 md5 加密，这就为难我胖虎了，不过 postman 早就考虑到加密的情况，所以默认已经引入了一些常用 package，CryptoJS中有丰富加密方法。Tests这个模块可以对接口的进行测试，譬如123pm.test("Status code is 200", function () &#123; pm.response.to.have.status(200);&#125;);可以查看接口返回的 status 是否是 200 。api文档在左侧的工程目录上右键选择 Publish Docs，会弹出一个网页，点过去就可以看到一个很精美的api文档，如果平时注意多注释，文档里面都会显示出来，更加优秀的是这个api文档是实时更新的，有新的api的时候刷新就可以看到了。more其实 postman 还有很多优秀的功能，值得我去探究。参考百家云接口签名Commonly used libraries and utilities]]></content>
