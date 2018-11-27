@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于授权和认证]]></title>
+    <url>%2Fp%2Fec56.html</url>
+    <content type="text"><![CDATA[昨天看到一篇博客专门提到 认证 VS 授权 。名字不同，认证 （Authentication） 和 授权 （Authorization）认证需要输入用户名和密码，授权指需要授权服务提供给当前服务若干权限从而请求确认HTTP状态码中有 401 和 403 都表示无权访问当前资源，401 表示则表示没有「认证」，403 表示没有『授权』参考一分钟讲清楚 Authentication 和 Authorization]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Laravel中的队列执行过慢]]></title>
     <url>%2Fp%2Fa1bc.html</url>
     <content type="text"><![CDATA[本来不想水的，公司的白先生硬要我水一篇，那就简单记录一下。问题上周，系统出现了一个很要命的问题，后端用的 laravel 队列执行导表任务异常缓慢，以前几分钟就能出的报告，几个小时都没动静，因为业务需要，每次用户观看视频都需要计算一些非常耗时的任务。调研后来调查尝试也确实是这块出了问题，laravel 文档中介绍了队列的优先级，提到参数顺序的问题。1$ php artisan queue:work --queue=high,low--queue 为队列的名称，参数用 , 分割，排的越靠前优先级越高。所以将越耗时的任务的优先级设置越低，将位置设置越靠后就好了。小结所以如果系统中存在耗时任务，造成整个队列都被卡住，应该按预计的执行耗时排序，将越耗时的任务提到越靠后的位置，这样就可以解决执行时间较短的任务优先执行参考队列优先级]]></content>
