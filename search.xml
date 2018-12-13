@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于浏览器的强制刷新]]></title>
+    <url>%2Fp%2F7a43.html</url>
+    <content type="text"><![CDATA[经常出现浏览器将js缓存的问题Chrome 浏览器Windows：Shift+F5Linux: Ctrl+Shift+RMac OS: Cmd+Shft+RSafari浏览器Cmd+Option+R]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[关于授权和认证]]></title>
     <url>%2Fp%2Fec56.html</url>
     <content type="text"><![CDATA[昨天看到一篇博客专门提到 认证 VS 授权 。名字不同，认证 （Authentication） 和 授权 （Authorization）认证需要输入用户名和密码，授权指需要授权服务提供给当前服务若干权限从而请求确认HTTP状态码中有 401 和 403 都表示无权访问当前资源，401 表示则表示没有「认证」，403 表示没有『授权』参考一分钟讲清楚 Authentication 和 Authorization]]></content>
