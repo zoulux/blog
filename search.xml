@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[go版本Excel导入脚本]]></title>
+    <url>%2Fp%2Fb6cc.html</url>
+    <content type="text"><![CDATA[一直挺想用 go 的，但是没想到能干啥，前段时间正好有个任务导入 Excel 到后台数据库，用 Python 的话我可能分分钟就写好了，但是作死的我就想试下 go，因为 go 可以打包成可执行程序包，然后就可以不依赖 go 的环境。直接编码使用 flag 获取终端参数解析123path := flag.String("path", "", "excel 路径")url := flag.String("url", "**", "服务器地址")flag.Parse()这里定义了 path 路径和服务器地址 url，唯一需要注意的是，这里变量返回都是指针。flag 有个好处，他的参数都是形如($key,$defaultValue,$description)，所以在执行 -h 的时候，都会返回 key 以及对应的 description。使用 Luxurioust/excelize 读取Excel文件123456789xlsx, err := excelize.OpenFile(*path)rows := xlsx.GetRows("Sheet1")for r, row := range rows &#123; fmt.Println(r) for c, col := range row &#123; fmt.Println(c) fmt.Println(col) &#125;&#125;这个包用起来还是很舒服，唯一一点只支持 xlsx 格式，对于老版本的 xls 格式可能需要先转化了才能使用。rows 为一个二维数组，参数为 sheet 名称，默认的名称都是 Sheet1使用自带的 net/http 发送请求1234567891011121314str, _ := json.Marshal(data)resp, err := http.Post(url, "application/json", strings.NewReader(string(str)))if err != nil &#123; fmt.Println(err)&#125;defer resp.Body.Close()body, err := ioutil.ReadAll(resp.Body)if err != nil &#123; fmt.Println(err) os.Exit(1)&#125;fmt.Println(string(body))go 自带的的 http 就是这么好用，post 形式发送了一个 json 包，这个 jsonEncode 用起来稍微有点不爽但是也还好。打包程序1$ go build main.go就可以将这个脚本打包成一个可执行文件了，但是发现文件还挺大的，我以为只有几百 k 呢，都 8m 多了压缩程序12$ brew install upx$ upx mainupx 是一个专门的压缩打包可执行文件的程序，可以优化包体积。这里压缩过的包不能使用了，暂时没有深究什么原因。所以寻找其他方式再次优化1$ go build -ldflags -w main.go发现这样弄就可以减少 1m 的体积，还是挺可观的，现在有一个可执行文件了，不用对方有 golang 环境，拿过去直接可以运行跑起来。go 就是优秀！参考Golang 读写 Excel压缩go build打包的可执行文件]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[关于浏览器的强制刷新]]></title>
     <url>%2Fp%2F7a43.html</url>
     <content type="text"><![CDATA[经常出现浏览器将js缓存的问题Chrome 浏览器Windows：Shift+F5Linux: Ctrl+Shift+RMac OS: Cmd+Shft+RSafari浏览器Cmd+Option+R]]></content>
