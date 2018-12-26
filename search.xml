@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[七牛数据从一个桶转移到另一个桶]]></title>
+    <url>%2Fp%2Ff6a9.html</url>
+    <content type="text"><![CDATA[因为七牛临时域名的原因，一些老的数据连接都对不上，我们这边需要将一个 bucketA 到另外一个 bucketB 中。操作步骤如下下载并 qshell七牛官方下载页面下载可执行文件，因为我是 mac ，所以选择 qshell_darwin_x64，找个合适的路径，我的习惯是 $HOME/bin，配置好 PATH。设置 account1$ qshell account AK SK name新版本有个 name，老版本是没有的。有找个参数可以更好的作区分。列出 bucket123$ qshell listbucket bucketA -o srccopy.txtxx简历.png 500071 FuEnT1v7oou7--ahA5gO1VIy4EHY 15283671101562504 image/png 0将 bucket 中的所有文件信息导出，BUT，这里我对七牛这点不满意，应该有个参数可以配置可以输出哪些文件信息，一股脑所有信息都抛出来了，但是这里是用 \t 分割的，那么我们做个切分也就 ok 了。处理文件列表来喽！这里突发奇想，来个 lua 脚本。就是爱折腾12345678910111213141516171819 function split( str,reps ) local resultStrList = &#123;&#125; string.gsub(str,'[^'..reps..']+',function ( w ) table.insert(resultStrList,w) end) return resultStrListendsourceFile = io.open ("srccopy.txt","r");toFile = io.open("tocopy.txt" ,"w");y=1for line in sourceFile:lines() do arr=split(line,"\t") name=arr[1] toFile:write(name.."\n") y=y+1endsourceFile:close()toFile:close()copy bucket1$ qshell batchcopy --force --failure-list failure-list.txt bucketA bucketB -i tocopy.txt处理失败的我们可以记录下来，大部分是文件名已存在，我这里选择不覆盖，如果需要覆盖添加上 --overwrite 参数。总结这是第一次对 lua 的使用，感觉还挺轻量]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[git-stash的妙用]]></title>
     <url>%2Fp%2Fa56c.html</url>
     <content type="text"><![CDATA[今天一路 git stash drop，本地暂存的数据全被我删掉了，然后 sb 的发现，Dropped refs/stash@{0} (534cb702c00f36afd4297e6328557cabead9600c) 是我早上刚写的，难道几百行的代码就没了吗?git 里面有个特点，总有 后悔药，只要能找到这个 id，肯定就能将数据恢复过来。12$ git stash pop 534cb702c00f36afd4297e6328557cabead9600c'534cb702c00f36afd4297e6328557cabead9600c' is not a stash reference不料行不通！1$ git stash apply 534cb702c00f36afd4297e6328557cabead9600c果然药到病除！从这里也发现 git stash pop 和 git stash apply 是稍微有点区别的，如果 stash-list 里面包含了这个 commit 用法是一样的，否则 apply 可以将不在 stash-list 中的代码恢复到工作区。]]></content>
