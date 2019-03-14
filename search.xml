@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[jenkins设置时区为北京时间]]></title>
+    <url>%2Fp%2F65f0.html</url>
+    <content type="text"><![CDATA[方案一12在【系统管理】-【脚本命令行】里运行System.setProperty(&apos;org.apache.commons.jelly.tags.fmt.timeZone&apos;, &apos;Asia/Shanghai&apos;)比较高分的回答，但是方案一是无效的方案二1$ docker run ... -e JAVA_OPTS=-Duser.timezone=Asia/Shanghai没有测试，只要我的容器已经run起来了，不想重新跑一个。方案三12$ docker exec -it --user=root laradock_jenkins_1 bash$ echo &quot;Asia/Shanghai&quot; &gt; /etc/timezone方案三 我自己想的，直接改 linux 时区，然后重启即可。]]></content>
+      <categories>
+        <category>开发笔记</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>jenkins</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[jenkins-docker 第一步]]></title>
     <url>%2Fp%2Ff123.html</url>
     <content type="text"><![CDATA[jenkins 一个非常强大的持续集成，自动化部署的解决方案，但是部署起来异常麻烦，但是在这个时代幸好我们有 docker。这篇文章不准备介绍如何安装 docker，如何拉一个 jenkins 镜像然后 run 起来，网上的文章实在太多。聊一聊我所理解的更深层的东西，因为是 docker 里面起的 jenkins，那么 jenkins 操作的 shell 执行命令的时候，是无法访问到外界的文件的，除非你挂载一个卷，但是挂载的卷，还必须授予 linux 下为 jenkins user 的访问权限。上面的问题都还是可以解决的，但是现在我的 php 代码同样是运行在 docker 中，那么就出现了 php-docker 和 jenkins-docker 是并列的一个关系，我想在 jenkins-docker 中执行 composer 、php artisan 等相关命令，因为根本不在一个空间下，部署构建工程变得尤为困难。所以这里又出现了解决方案 docker-in-docker，它允许你在容器里再创建容器，但是由于存在重复嵌套等问题，现在已经很少使用。新的解决方案是将宿主机的 docker-sock 挂载到 jenkins-docker 内部，所以在 jenkins-docker 内部操作 docker 命令的时候感觉和在外部是一样的。1$ docker run -v /var/run/docker.sock:/var/run/docker.sock ...然而故事并没有这么圆满！1$ docker-compose exec --user root jenkins bash这样进入容器，docker 命令是可以正常执行的，但是1$ docker-compose exec jenkins bash这样是不行的，因为默认是以 –user jenkins 进入的，在 jenkins 中的 shell 中也都是 jenkins 用户，一旦执行 docker 等相关操作，立马会报错。1Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock–user jenkins 是没有权限访问到 var/run/docker.sock，折腾一下午，网上很多方法也都是没法用的，因为 docker 容器里面很多命令都被阉割掉了，最终在 github 上面发现了一个简短又适用的命令：1$ chmod 777 /var/run/docker.sock完美解决我的问题，特此记录！参考文档使用 Docker-in-Docker 来运行 CI 或集成测试环境？三思！github issues]]></content>
