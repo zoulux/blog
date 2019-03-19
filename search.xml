@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[git 批量删除分支]]></title>
+    <url>%2Fp%2Fc93.html</url>
+    <content type="text"><![CDATA[1$ git branch | grep &quot;fix-bug-*&quot; | xargs git branch -d]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[jenkins设置时区为北京时间]]></title>
     <url>%2Fp%2F65f0.html</url>
     <content type="text"><![CDATA[方案一12在【系统管理】-【脚本命令行】里运行System.setProperty(&apos;org.apache.commons.jelly.tags.fmt.timeZone&apos;, &apos;Asia/Shanghai&apos;)比较高分的回答，但是方案一是无效的方案二1$ docker run ... -e JAVA_OPTS=-Duser.timezone=Asia/Shanghai没有测试，只要我的容器已经run起来了，不想重新跑一个。方案三12$ docker exec -it --user=root laradock_jenkins_1 bash$ echo &quot;Asia/Shanghai&quot; &gt; /etc/timezone方案三 我自己想的，直接改 linux 时区，然后重启即可。]]></content>
