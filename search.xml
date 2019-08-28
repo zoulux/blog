@@ -4,6 +4,13 @@
     <title><![CDATA[swoft 入门]]></title>
     <url>%2Fp%2Faa25.html</url>
     <content type="text"><![CDATA[前言对比了几个基于 swoole 的框架，swoft 在 github 上面 star 数量遥遥领先的，所以准备基于 swoft 开始一个小项目。swoft目录对于一个 laravel 老玩家，看这个目录还是比较简单的，env 配置文件使用的时候 copy 一遍，不同的是他这边配置是分为 env、config、bean 三部分，主要开发的代码在 app 下，bin 下放了一些可执行文件。Controller我是将它作为一个 http 的服务，所以最重要的目录 app/Http/Controller ，每一条 http 请求对应一个 Controller 中的方法。所有 Controller 都需要 @Swoft\Http\Server\Annotation\Mapping\Controller 注解（注释），后面所有提到的注释和注解意义相同，注解是 java 中的称呼，是一些有意义的代码级别含义的标志，方法都需要添加 @Swoft\Http\Server\Annotation\Mapping\RequestMapping 注解Request12345$request = Context::get()-&gt;getRequest();$key = $request-&gt;post('key');$method = $request-&gt;getMethod();$headers = $request-&gt;getHeaders();$some = $request-&gt;query('key', 'default value')这里 $request 可以类比 laravel 对象，Response这种大而全的框架其实都是有很多方法获取常见的 request 以及 response 对象的。全局context获取1$response=Context::mustGet()-&gt;getResponse()方法注入12345678910111213/** * @RequestMapping("index") * @param Response $response * @return Response * @throws ReflectionException * @throws ContainerException */public function index(Response $response): Response&#123; $response = $response-&gt;withContent('&lt;html lang="en"&gt;&lt;h1&gt;Swoft framework&lt;/h1&gt;&lt;/html&gt;'); $response = $response-&gt;withContentType(ContentType::HTML); return $response;&#125;可以看到使用了 param 注解，并声明 Response 类型。DB和 laravel 中一样使用 Eloquent 模型操作数据，但是我没有找到我想要的关联模型相关的方式，例如：belongsTo、morphTo 等。123$user = User::query() -&gt;where('mobile', $mobile) -&gt;first();Redis这类框架真的互相一大抄，使用的是著名的扩展 predis，毫无悬念。1$value = Redis::get('some');运行直接运行其实到这里才是我想说有点坑的地方。1$ php bin/swoft http:start好！稍等片刻，项目是跑起来了，但是我修改代码的时候居然不更新，需要切断进程重新跑。swoftcli这也是官方提供的一个工具，可以 watch 文件的变化，然后可以自动重启服务，cli 在老版本是内置的，新版本的 swoft 踢除了。1$ php bin/swoftcli run -b bin/swoft /var/www/swoft不得不说真香，但是在 MacBook 下面修改代码到服务重启成功总是慢半拍，但是试了在 linux 下确实可以做到同步。容器化终于要讲到我的大杀器，官方也是提供 Dockerfile 和 docker-compose 的，改了一下 command 就可以正常运行了。参考文档-官方文档]]></content>
+      <categories>
+        <category>开发笔记</category>
+      </categories>
+      <tags>
+        <tag>swoft</tag>
+        <tag>swoole</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[mysql的左关联]]></title>
